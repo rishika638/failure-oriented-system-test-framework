@@ -5,13 +5,13 @@
 Most projects I had done earlier were about making things work in ideal conditions.  
 But while reading about real outages and production issues, I noticed that systems usually don’t fail by completely crashing. Instead, they stay “up” but become slow, unstable, or unreliable.
 
-This project started from that curiosity — to understand **what actually happens when systems are stressed**, and how to observe that behavior properly.
+This project started from that curiosity just to understand **what actually happens when systems are stressed**, and how to observe that behavior properly.
 
 ---
 
 ### What this project is
 
-This is a small system test framework built on Linux that intentionally injects failures into a running service and studies how the system behaves from the **client’s point of view**.
+This is a small system test framework built on Linux that intentionally injects failures into a running service and studies how the system behaves from the **client’s POV**.
 
 The focus is not on building features, but on:
 - breaking assumptions
@@ -84,3 +84,4 @@ Planned (future work):
 
 This project represents a shift in how I think about systems — from making demos work to understanding how systems behave when things go wrong.  
 The emphasis is on **observation, reasoning, and recovery**, not on feature count.
+
