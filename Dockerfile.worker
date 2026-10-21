@@ -1,0 +1,14 @@
+FROM python:3.12-slim
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY api api
+COPY capture capture
+COPY comparison comparison
+COPY fault_injection fault_injection
+COPY incident_store incident_store
+COPY replay replay
+COPY scenarios scenarios
+COPY worker worker
+CMD ["python", "-m", "worker.main"]

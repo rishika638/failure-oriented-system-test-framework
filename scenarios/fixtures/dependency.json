@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "name": "dependency",
+  "method": "GET",
+  "path": "/dependency",
+  "fault": "dependency",
+  "latency_ms": 0,
+  "timeout_ms": 1500,
+  "expected_status": 200,
+  "recovery_max_latency_ms": 500
+}

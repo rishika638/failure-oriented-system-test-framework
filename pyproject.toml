@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools==75.6.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "production-failure-capture-replay"
+version = "1.0.0"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi==0.115.6",
+  "uvicorn[standard]==0.34.0",
+  "pydantic==2.10.4",
+  "SQLAlchemy==2.0.36",
+  "alembic==1.14.0",
+  "psycopg[binary]==3.2.3",
+  "redis==5.2.1",
+  "rq==2.1.0",
+  "requests==2.32.3",
+  "flask==3.0.0",
+  "httpx==0.28.1",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["api*", "capture*", "comparison*", "fault_injection*", "incident_store*", "replay*", "scenarios*", "traffic*", "worker*", "failures*", "target*"]
+exclude = ["tests*"]
+namespaces = true
+
+[tool.setuptools.package-data]
+scenarios = ["fixtures/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "name": "latency",
+  "method": "GET",
+  "path": "/ping",
+  "fault": "latency",
+  "latency_ms": 300,
+  "timeout_ms": 3000,
+  "expected_status": 200,
+  "recovery_max_latency_ms": 500
+}
