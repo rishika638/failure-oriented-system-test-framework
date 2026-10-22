@@ -50,10 +50,13 @@ def compare(
             reason="Required original or replay measurements are missing",
         )
     delta = replay_latency_ms - original_latency_ms
-    reproduced = (
-        failure_reproduced if failure_reproduced is not None
-        else replay_status == original_status
-    ) and abs(delta) <= tolerance_ms
+    if failure_reproduced is not None:
+        reproduced = failure_reproduced
+    else:
+        reproduced = (
+            replay_status == original_status
+            and abs(delta) <= tolerance_ms
+        )
     signature_match = (
         original_fingerprint == replay_fingerprint
         if original_fingerprint is not None and replay_fingerprint is not None

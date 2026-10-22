@@ -51,6 +51,25 @@ def execute_replay(job_id: str):
                     and original_status >= 500
                 )
             )
+
+            # Latency faults must show a measurable injected effect and clean recovery.
+            # Do not compare the manually supplied original latency directly with the
+            # replay's end-to-end HTTP latency.
+            if scenario.fault == "latency":
+                recovery = replay["recovery"]
+                injected_latency = injected.get("latency_ms")
+                recovery_latency = recovery.get("latency_ms")
+
+                fault_effect_confirmed = (
+                    isinstance(injected_latency, (int, float))
+                    and isinstance(recovery_latency, (int, float))
+                    and injected_latency - recovery_latency >= scenario.latency_ms * 0.5
+                )
+
+                failure_reproduced = (
+                    failure_reproduced
+                    and fault_effect_confirmed
+                )
             result = compare(
                 original_status,
                 original.get("latency_ms"),
